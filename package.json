@@ -1,0 +1,15 @@
+{
+  "name": "web-ohjelmointi-2-projekti",
+  "version": "1.0.0",
+  "description": "WOHI 2 projekti",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": ["express", "nodejs", "backend", "api"],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
