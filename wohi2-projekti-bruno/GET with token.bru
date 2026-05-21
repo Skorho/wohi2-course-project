@@ -1,0 +1,33 @@
+meta {
+  name: GET with token
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:3000/api/posts
+  body: json
+  auth: inherit
+}
+
+params:query {
+  : 
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3OTI0MDIyOSwiZXhwIjoxNzc5MjQzODI5fQ.rkxC_OLBrOFQ1xF2DZ7Qb-5GbYK3QupOiKaemwzZWCg
+}
+
+body:form-urlencoded {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3OTI0MDIyOSwiZXhwIjoxNzc5MjQzODI5fQ.rkxC_OLBrOFQ1xF2DZ7Qb-5GbYK3QupOiKaemwzZWCg
+}
+
+body:multipart-form {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3OTI0MDIyOSwiZXhwIjoxNzc5MjQzODI5fQ.rkxC_OLBrOFQ1xF2DZ7Qb-5GbYK3QupOiKaemwzZWCg
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+​

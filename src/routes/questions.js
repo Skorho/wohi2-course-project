@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const prisma = require("../lib/prisma");
+const authenticate = require("../middleware/auth");
+const isOwner = require("../middleware/isOwner");
+
+// Apply authentication to ALL routes in this router
+router.use(authenticate);
 
 // Formatting questions to proper format
 function formatQuestion(question) {
@@ -49,8 +54,8 @@ router.post("/", async (req, res) => {
     const { question_phrase, answer, keywords } = req.body;
 
     if (!question_phrase || !answer) {
-        return res.status(400).json({ msg:
-            "question_phrase and answer are mandatory" });
+        return res.status(400).json({ 
+            msg: "question_phrase and answer are mandatory" });
     }
 
     const keywordsArray = Array.isArray(keywords) ? keywords : [];
@@ -58,6 +63,7 @@ router.post("/", async (req, res) => {
     const newQuestion = await prisma.question.create({
         data: {
             question_phrase, answer,
+            userId: req.user.userId,
             keywords: {
                 connectOrCreate: keywordsArray.map((kw) => ({
                     where: { name: kw }, create: { name: kw },
@@ -71,7 +77,8 @@ router.post("/", async (req, res) => {
 
 //PUT api/questions/:questionId
 // Edit a question
-router.put("/:questionId", async (req, res) => {
+// PUT /api/posts/:postId — isOwner checks existence + ownership
+router.put("/:questionId", isOwner, async (req, res) => {
     const questionId = Number(req.params.questionId);
     const { question_phrase, answer, keywords } = req.body;
     const existingQuestion = await prisma.question.findUnique({ where: { id: questionId } });
@@ -103,7 +110,8 @@ router.put("/:questionId", async (req, res) => {
 
 // DELETE /questions/:questionId
 // Delete a question
-router.delete("/:questionId", async (req, res) => {
+// PUT /api/posts/:postId — isOwner checks existence + ownership
+router.delete("/:questionId", isOwner, async (req, res) => {
     const questionId = Number(req.params.questionId);
 
     const question = await prisma.question.findUnique({
