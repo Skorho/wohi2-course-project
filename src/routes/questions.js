@@ -104,15 +104,16 @@ router.get("/:questionId", async (req, res) => {
 router.post("/", upload.single("image"), async (req, res) => {
     const { question, date, answer, keywords } = req.body;
 
-    if (!question || !date || !answer) {
-        return res.status(400).json({msg: "question, date and answer are mandatory"});
+    if (!question || !answer) {
+        return res.status(400).json({msg: "question and answer are mandatory"});
     }
-
+    // Päiväys valinnaiseksi
+    const questionDate = date ? new Date(date) : new Date();    
     const keywordsArray = Array.isArray(keywords) ? keywords : [];
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
     const newQuestion = await prisma.question.create({
         data: {
-        question, date: new Date(date), answer, imageUrl,
+        question, date: questionDate, answer, imageUrl,
         userId: req.user.userId,
         keywords: {
                 connectOrCreate: keywordsArray.map((kw) => ({
@@ -245,8 +246,10 @@ router.delete("/:questionId/attempt", async (req, res) => {
             return res.status(404).json({ message: "Question not found" });
     }
 
-    await prisma.attempt.deleteMany({
+    // vaihtaa correctin falseksi
+    await prisma.attempt.updateMany({
         where: { userId: req.user.userId, questionId },
+        data: {correct: false},
     });
 
     const attemptCount = await prisma.attempt.count({ where: { questionId } });
