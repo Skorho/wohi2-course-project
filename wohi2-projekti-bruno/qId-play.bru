@@ -1,0 +1,20 @@
+meta {
+  name: qId/play
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://localhost:3000/api/questions/1/play
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc4MDU3MjU2NCwiZXhwIjoxNzgwNTc2MTY0fQ._iEDJ1Uvtx3bPta4xbAMLU_Njl2V9wxWNEwoloIqb-E
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

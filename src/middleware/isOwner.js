@@ -3,13 +3,15 @@ const prisma = require("../lib/prisma");
 
 async function isOwner (req, res, next) {
     const id = Number(req.params.questionId);
-    const question = await prisma.user.findUnique({
+    const question = await prisma.question.findUnique({
         where: { id },
-        include: { keywords: true },
+        include: { 
+            keywords: true 
+        },
     });
 
     if (!question) {
-        return res.status(404).json({ message: "User not found" });
+        return res.status(404).json({ message: "Question not found" });
     }
 
     if (question.userId !== req.user.userId) {

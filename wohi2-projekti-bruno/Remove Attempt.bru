@@ -1,0 +1,20 @@
+meta {
+  name: Remove Attempt
+  type: http
+  seq: 1
+}
+
+delete {
+  url: http://localhost:3000/api/questions/1/attempt
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc4MDQ4NTkwNiwiZXhwIjoxNzgwNDg5NTA2fQ.HUKmH0U5yHDALpUgrHqSueJxXhHP_QZqy4rMqBKXxec
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

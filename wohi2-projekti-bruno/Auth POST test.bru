@@ -1,0 +1,25 @@
+meta {
+  name: Auth POST test
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:3000/api/questions?page=1
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 1
+}
+
+headers {
+  page: 1
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc4MDQ4MTQ1NiwiZXhwIjoxNzgwNDg1MDU2fQ.ydImmQxTjcAv1_y8V2oSuyHMqU1qUnn4UGAshBNRB7I
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

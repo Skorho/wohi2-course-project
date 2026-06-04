@@ -1,0 +1,25 @@
+meta {
+  name: Play endpoint test
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/api/questions/:qId/play
+  body: none
+  auth: inherit
+}
+
+params:path {
+  qId: 
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc4MDUwODI5MiwiZXhwIjoxNzgwNTExODkyfQ.focs8cH2UTat1Ma6KksyA7DwxMqDepP3L6lsYVG3KIM
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+​

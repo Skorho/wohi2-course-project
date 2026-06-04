@@ -1,24 +1,20 @@
 meta {
-  name: Create question
+  name: Attempt
   type: http
   seq: 1
 }
 
 post {
-  url: {{baseUrl}}
-  body: json
-  auth: none
+  url: http://localhost:3000/api/questions/1/attempt
+  body: none
+  auth: inherit
 }
 
 headers {
   Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc4MDUwMTAzMSwiZXhwIjoxNzgwNTA0NjMxfQ.qPew80sbREhf4Wv9R3BpN_nFhf0SeMuokOcX5ugfpls
 }
 
-body:json {
-  {
-    "title": "TOIMIIKO LUONTI",
-    "date": "2026-06-03",
-    "answer": "En kerro sitäkään",
-    "keywords": ["UEF"]
-  }
+settings {
+  encodeUrl: true
+  timeout: 0
 }

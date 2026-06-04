@@ -3,8 +3,10 @@ const express = require('express');
 const app = express();
 const QuestionsRouter = require("./routes/questions");
 const authRouter = require("./routes/auth");
-
+const path = require('path')
 const PORT = process.env.PORT || 3000;
+
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Middleware to parse JSON bodies (will be useful in later steps)
 app.use(express.json());
@@ -15,6 +17,12 @@ app.use("/api/questions", QuestionsRouter);
 
 app.use((req, res) => {
     res.json({msg: "Not found"});
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ msg: "Internal server error" });
 });
 
 // Start the server

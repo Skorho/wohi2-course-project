@@ -4,22 +4,26 @@ const prisma = new PrismaClient();
 
 const seedQuestions = [
     {
-        question_phrase: "Is HTTP the foundation of communication on the web?",
+        question: "Is HTTP the foundation of communication on the web?",
+        date: new Date("2026-06-03"),
         answer: "Yes",
         keywords: ["http", "web"]
     },
     {
-        question_phrase: "Which HTTP method sends data to the server to create a new resource?",
+        question: "Which HTTP method sends data to the server to create a new resource?",
+        date: new Date("2026-06-03"),
         answer: "POST",
         keywords: ["http", "api"]
     },
     {
-        question_phrase: "What is the most common database software?",
+        question: "What is the most common database software?",
+        date: new Date("2026-06-03"),
         answer: "Oracle DBMS",
         keywords: ["javascript", "backend"]
     },
     {
-        question_phrase: "What is an object in JavaScript?",
+        question: "What is an object in JavaScript?",
+        date: new Date("2026-06-03"),
         answer: "A collection of key-value pairs",
         keywords: ["database", "backend"]
     }
@@ -40,18 +44,17 @@ async function main() {
     });
     console.log("Created user:", user.email);
 
-    for (const question of seedQuestions) {
+    for (const i of seedQuestions) {
         await prisma.question.create({
             data: {
-
-                question_phrase: question.question_phrase,
-                answer: question.answer,
+                question: i.question,
+                date: i.date,
+                answer: i.answer,
                 userId: user.id,
                 keywords: {
-                    connectOrCreate: question.keywords.map((kw) => ({
+                    connectOrCreate: i.keywords.map((kw) => ({
                         where: { name: kw },
-                        create: { name: kw },
-                        
+                        create: { name: kw },                        
                     })),
                 },
             },

@@ -5,16 +5,20 @@ meta {
 }
 
 put {
-  url: {{baseUrl}}/1
+  url: http://localhost:3000/api/questions/2
   body: json
   auth: none
 }
 
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc4MDUwMzU3NCwiZXhwIjoxNzgwNTA3MTc0fQ.TLS9qz-zHwEeHPXaBvuTEnYWkL6v1ma0CnCUFgvuT-Y
+}
+
 body:json {
   {
-    "question_phrase": "What",
-    "options": ["What", "Yes"],
-    "answer": "Yes",
-    "keywords": ["UEF"]
+   "title": "Is HTTP the foundation of communication on the web?",
+   "date": "2026-06-03",
+   "answer": "Yes",
+   "keywords": ["http", "web"]
   }
 }

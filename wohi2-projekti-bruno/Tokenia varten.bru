@@ -1,5 +1,5 @@
 meta {
-  name: asdad
+  name: Tokenia varten
   type: http
   seq: 1
 }
@@ -7,7 +7,12 @@ meta {
 post {
   url: http://localhost:3000/api/auth/login
   body: json
-  auth: inherit
+  auth: none
+}
+
+headers {
+  ~email: admin@example.com
+  ~password: 1234
 }
 
 body:json {

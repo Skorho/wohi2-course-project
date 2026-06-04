@@ -5,7 +5,17 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}
+  url: http://localhost:3000/api/questions?keyword=http
   body: none
   auth: none
+}
+
+params:query {
+  keyword: http
+  ~page: 1
+  ~limit: 1
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc4MDU3NjAyNiwiZXhwIjoxNzgwNTc5NjI2fQ.c3bZvHEzW3eBiLRr5Zyzwk7zMfJNVieukOf2Iy-VFCU
 }

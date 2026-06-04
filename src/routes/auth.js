@@ -12,59 +12,59 @@ const SECRET = process.env.JWT_SECRET;
 router.post("/register", async (req, res) => {
     const { email, password, name } = req.body;
 
-if (!email || !password || !name) {
-    return res.status(400).json({ error: "email, password and name are required" });
-}
+    if (!email || !password || !name) {
+        return res.status(400).json({ error: "email, password and name are required" });
+    }
 
-// Check if user already exists
-const existingUser = await prisma.user.findUnique({ where: { email },});
+    // Check if user already exists
+    const existingUser = await prisma.user.findUnique({ where: { email },});
 
-if (existingUser) {
-    return res.status(409).json({ error: "Email already registered" });
-}
+    if (existingUser) {
+        return res.status(409).json({ error: "Email already registered" });
+    }
 
-// Hash the password
-const hashedPassword = await bcrypt.hash(password, 10);
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-// Create the user
-const user = await prisma.user.create({
-    data: { email, password: hashedPassword, name },
-});
-
-// Generate a token
-const token = jwt.sign({ userId: user.id }, SECRET, { expiresIn: "1h" });
-
-res.status(201).json({
-    message: "User registered successfully",
-    token,
+    // Create the user
+    const user = await prisma.user.create({
+        data: { email, password: hashedPassword, name },
     });
-});
 
-// POST /api/auth/login
-router.post("/login", async (req, res) => {
-    const { email, password } = req.body;
+    // Generate a token
+    const token = jwt.sign({ userId: user.id }, SECRET, { expiresIn: "1h" });
 
-if (!email || !password) {
-    return res.status(400).json({ error: "email and password are required" });
-}
+    res.status(201).json({
+        message: "User registered successfully",
+        token,
+        });
+    });
 
-// Find the user
-const user = await prisma.user.findUnique({
-    where: { email },
-});
+    // POST /api/auth/login
+    router.post("/login", async (req, res) => {
+        const { email, password } = req.body;
 
-if (!user) {
-    return res.status(401).json({ error: "Invalid credentials" });
-}
+    if (!email || !password) {
+        return res.status(400).json({ error: "email and password are required" });
+    }
 
-// Verify the password
-const isValid = await bcrypt.compare(password, user.password);
+    // Find the user
+    const user = await prisma.user.findUnique({
+        where: { email },
+    });
 
-if (!isValid) {
-    return res.status(401).json({ error: "Invalid credentials" });
-}
+    if (!user) {
+        return res.status(401).json({ error: "Invalid credentials" });
+    }
 
-// Generate a token
+    // Verify the password
+    const isValid = await bcrypt.compare(password, user.password);
+
+    if (!isValid) {
+        return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    // Generate a token
     const token = jwt.sign({ userId: user.id }, SECRET, { expiresIn: "1h" });
     
     res.json({ token });
