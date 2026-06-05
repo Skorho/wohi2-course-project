@@ -5,25 +5,25 @@ const prisma = new PrismaClient();
 const seedQuestions = [
     {
         question: "Is HTTP the foundation of communication on the web?",
-        date: new Date("2026-06-03"),
+        date: new Date(),
         answer: "Yes",
         keywords: ["http", "web"]
     },
     {
         question: "Which HTTP method sends data to the server to create a new resource?",
-        date: new Date("2026-06-03"),
+        date: new Date(),
         answer: "POST",
         keywords: ["http", "api"]
     },
     {
         question: "What is the most common database software?",
-        date: new Date("2026-06-03"),
+        date: new Date(),
         answer: "Oracle DBMS",
         keywords: ["javascript", "backend"]
     },
     {
         question: "What is an object in JavaScript?",
-        date: new Date("2026-06-03"),
+        date: new Date(),
         answer: "A collection of key-value pairs",
         keywords: ["database", "backend"]
     }

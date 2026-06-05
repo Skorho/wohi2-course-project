@@ -5,20 +5,21 @@ meta {
 }
 
 post {
-  url: {{baseUrl}}
+  url: http://localhost:3000/api/questions
   body: json
   auth: none
 }
 
 headers {
-  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc4MDUwMTAzMSwiZXhwIjoxNzgwNTA0NjMxfQ.qPew80sbREhf4Wv9R3BpN_nFhf0SeMuokOcX5ugfpls
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc4MDU5MjQ2MiwiZXhwIjoxNzgwNTk2MDYyfQ.O4LAXMfH_G6rHT13EyptEXKlhFqClOk5K8uYzv2Cv-k
 }
 
 body:json {
   {
-    "title": "TOIMIIKO LUONTI",
+    "question": "Terveterve",
     "date": "2026-06-03",
     "answer": "En kerro sitäkään",
     "keywords": ["UEF"]
   }
 }
+​

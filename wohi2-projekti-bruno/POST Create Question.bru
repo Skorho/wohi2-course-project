@@ -1,0 +1,29 @@
+meta {
+  name: POST Create Question
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/api/questions/
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc4MDY3MDM3OCwiZXhwIjoxNzgwNjczOTc4fQ.Nq28UpHwqsPR0Ja1PZp9Zhp3UU_ByNYVW5ox6kzDgGk
+}
+
+body:json {
+  {
+    "question": "Is HTTP the foundation of communication on the web?",
+    "date": "2026-06-05",
+    "answer": "Yes",
+    "keywords": ["http", "web"]
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

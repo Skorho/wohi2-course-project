@@ -1,15 +1,21 @@
 meta {
-  name: Delete question
+  name: GET Questions
   type: http
   seq: 1
 }
 
-delete {
-  url: http://localhost:3000/api/questions/8
+get {
+  url: http://localhost:3000/api/questions/
   body: none
-  auth: none
+  auth: inherit
 }
 
 headers {
   Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc4MDY3MDM3OCwiZXhwIjoxNzgwNjczOTc4fQ.Nq28UpHwqsPR0Ja1PZp9Zhp3UU_ByNYVW5ox6kzDgGk
 }
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+​
